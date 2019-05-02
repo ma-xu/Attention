@@ -19,4 +19,4 @@ module load cuda/75/toolkit/7.5.18
 module load cudnn/6.0/cuda75
 module load pytorch/1.0.1
 
-CUDA_VISIBLE_DEVICES=0,1,2,3 python3 /home/xm0036/Attention/imagnenet.py --netName=resnet34 --bs=1024
+CUDA_VISIBLE_DEVICES=0,1,2,3 python3 /home/xm0036/Attention/imagenet.py --netName=resnet34 --bs=1024
