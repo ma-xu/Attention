@@ -19,7 +19,7 @@ from utils import *
 import torchvision.datasets as datasets
 
 os.environ["HDF5_USE_FILE_LOCKING"] = "FALSE"
-#os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
 
 model_names = sorted(name for name in models.__dict__
     if name.islower() and not name.startswith("__")
@@ -29,7 +29,7 @@ parser = argparse.ArgumentParser(description='PyTorch Imagenet Training')
 parser.add_argument('--lr', default=0.1, type=float, help='learning rate')
 parser.add_argument('--resume', '-r',default=False, action='store_true', help='resume from checkpoint')
 parser.add_argument('--netName', default='resnet18',choices=model_names, type=str, help='choosing network')
-parser.add_argument('--bs', default=512, type=int, help='batch size')
+parser.add_argument('--bs', default=1024, type=int, help='batch size')
 parser.add_argument('--workers', default=4, type=int, help='workers')
 parser.add_argument('--es', default=100, type=int, help='epoch size')
 parser.add_argument('--imagenet', default=1000, type=int, help='dataset classes number')
@@ -74,7 +74,6 @@ testloader = torch.utils.data.DataLoader(test_dataset, batch_size=args.bs, shuff
 
 # Model
 print('==> Building model..')
-# More models are avaliable in models folder
 net = models.__dict__[args.arch]()
 
 flops, params = get_model_complexity_info(net, (224, 224),as_strings=True, print_per_layer_stat=False)
