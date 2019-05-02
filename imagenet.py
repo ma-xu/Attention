@@ -74,7 +74,7 @@ testloader = torch.utils.data.DataLoader(test_dataset, batch_size=args.bs, shuff
 
 # Model
 print('==> Building model..')
-net = models.__dict__[args.arch]()
+net = models.__dict__[args.netName]()
 
 flops, params = get_model_complexity_info(net, (224, 224),as_strings=True, print_per_layer_stat=False)
 print('Flops:  ' + flops)
