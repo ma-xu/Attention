@@ -125,7 +125,7 @@ def train(epoch):
         optimizer.step()
 
         train_loss += loss.item()
-        _, predicted = outputs.max(1)
+        _, predicted =outputs.topk(5, 1, True, True)
         total += targets.size(0)
         predicted = predicted.t()
         correct = predicted.eq(targets.view(1, -1).expand_as(predicted))
@@ -157,7 +157,7 @@ def test(epoch):
             loss = criterion(outputs, targets)
 
             test_loss += loss.item()
-            _, predicted = outputs.max(1)
+            _, predicted =outputs.topk(5, 1, True, True)
             total += targets.size(0)
             predicted = predicted.t()
             correct = predicted.eq(targets.view(1, -1).expand_as(predicted))
